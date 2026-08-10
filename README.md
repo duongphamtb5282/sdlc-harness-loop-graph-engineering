@@ -36,6 +36,10 @@ Agent = Model + Harness
 
 ## Architecture
 
+The current architecture snapshot — the nine layers from entry to oracle, and how a request flows through them:
+
+![Nexus Agent Kernel — Architecture](documents/generated/architecture/nexus-agent-kernel-architecture.png)
+
 ### Layer Model
 
 | # | Layer | Components | Responsibility |

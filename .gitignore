@@ -6,9 +6,6 @@
 # ═══════════════════════════════════════════════════════════════
 
 # ── Not published (stay local) ────────────────────────────────
-# documents/generated: agent pipeline artifacts (internal design docs,
-#   review reports — will be showcased in a separate repo)
-documents/generated/
 # bmad-builder: BMAD-branded vendored project (brand-neutral rule —
 # core-skills libraries are committed; this one stays private)
 kernel/core-skills/bmad-builder/
