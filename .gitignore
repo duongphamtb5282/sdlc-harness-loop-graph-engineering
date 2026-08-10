@@ -1,14 +1,17 @@
 # ═══════════════════════════════════════════════════════════════
 # Nexus Agent Kernel — .gitignore
-# Published as proprietary IP: third-party libraries + private
-# documents excluded; local runtime state + secrets excluded.
+# Curated project docs (documents/project/) ARE published;
+# third-party libraries, generated artifacts, frozen upstream,
+# and local runtime state stay private.
 # ═══════════════════════════════════════════════════════════════
 
-# ── IP / proprietary content (NEVER publish) ───────────────────
-# core-skills: third-party skill libraries (308M, embedded .git repos)
-# documents: internal design docs & review reports
-core-skills/
-documents/
+# ── Not published (stay local) ────────────────────────────────
+# documents/generated: agent pipeline artifacts (internal design docs,
+#   review reports — will be showcased in a separate repo)
+documents/generated/
+# bmad-builder: BMAD-branded vendored project (brand-neutral rule —
+# core-skills libraries are committed; this one stays private)
+kernel/core-skills/bmad-builder/
 
 # ── Secrets & credentials (NEVER commit) ──────────────────────
 .env
@@ -66,13 +69,13 @@ agentdb.rvf.lock
 .claude/settings.local.json
 
 # ── MCP credentials (user-specific) ───────────────────────────
-agent-v01/mcp/**/.env
-agent-v01/mcp/**/*.json.local
-agent-v01/mcp/**/*.local.json
+kernel/mcp/**/.env
+kernel/mcp/**/*.json.local
+kernel/mcp/**/*.local.json
 
-# ── BMAD generated / workspace state ──────────────────────────
-_bmad/
-_bmad_old/
+# ── Nexus generated / workspace state ──────────────────────────
+_nexus/
+_nexus_old/
 projects/**/.sdlc-automation-agent/
 projects/**/cost-state.json
 

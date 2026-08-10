@@ -1,6 +1,8 @@
-# Nexus Agent Kernel
+# SDLC Harness Engineering
 
-Single-kernel agent system: **execution harness** (memory, swarms, MCP, daemon) + **methodology layer** (8 personas, 9 protocols, 22 stacks, 500+ skills) + **slash command pipeline** for requirement discovery → spec → architecture → plan → QA test cases → build → review.
+Single-kernel agent system: **execution harness** (memory, swarms, MCP, daemon) + **methodology layer** (8 expert personas, 9 protocols, 22 technology stacks, 550+ skills) + a **stage-gated pipeline** for requirement discovery → deep spec → architecture → planning → QA test cases → build → review, plus **lateral product-workflow commands** (`/pm-strategy`, `/pm-prd`, `/pm-roadmap`, `/pm-prioritize`, `/market-intel`, `/pm-decisions`, `/pm-workshop`) and a **proposal generator** that assembles the full engagement trail into one self-contained document.
+
+> ⚠️ **Showcase.** This repository presents the system and its deliverables. The underlying engine — its knowledge base, routing intelligence, and internal implementation — is our proprietary core and is not included here. To see the real system run, **contact the author**.
 
 ```
 Agent = Model + Harness
@@ -10,28 +12,25 @@ Agent = Model + Harness
 
 ---
 
-## Origin & Attribution
-
-This repository is a **customized distribution derived from the kernel kernel** — *Breakthrough Method of Agile AI-driven Development* by Brian () Madison ([MIT license](https://opensource.org/licenses/MIT), v6.10.0, `agent-v01/kernel/`).
-
-It is published as **proprietary IP**: the third-party skill libraries (`agent-v01/core-skills/`, ~308 MB of vendored open-source skills) and internal design documents (`documents/`) are intentionally **not included** in this repository. To install into a new project, copy `core-skills/` in from the original working copy first — `install-to-project.sh` installs it when present and skips it gracefully when absent.
-
----
-
 ## Table of Contents
 
 1. [Architecture](#architecture)
-2. [Technology Stack](#technology-stack)
-3. [Setup & Installation](#setup--installation)
-4. [Commands](#commands)
-5. [Deep-Spec Methodology](#5-deep-spec-methodology)
-6. [Skill Detection](#6-skill-detection--yes-the-agent-detects-needed-skills-per-task)
-7. [test Harness](#7-test-harness--start--use)
-8. [Cost Management](#8-cost-management)
-9. [Project Structure](#9-project-structure)
-10. [Protocol Sync](#10-protocol-sync)
-11. [Validation](#11-validation)
-12. [Further Reading](#12-further-reading)
+2. [Spec-Driven Development](#spec-driven-development)
+3. [Deep-Spec Methodology](#deep-spec-methodology)
+4. [Harness Loop Graph](#harness-loop-graph)
+5. [Daily Work Guide](#daily-work-guide)
+6. [Client Capacity Proposals (SLO → Config → BOM)](#client-capacity-proposals-slo--config--bom)
+7. [Comprehensive Software Project Proposal](#comprehensive-software-project-proposal)
+8. [Technology Stack](#technology-stack)
+9. [Setup & Installation](#setup--installation)
+10. [Commands](#commands)
+11. [Skill Detection](#skill-detection--yes-the-agent-detects-needed-skills-per-task)
+12. [Forge Harness — Start & Use](#forge-harness--start--use)
+13. [Cost Management](#cost-management)
+14. [Project Structure](#project-structure)
+15. [Capability Skills](#capability-skills)
+16. [Showcase Deliverables](#showcase-deliverables)
+17. [Contact](#contact)
 
 ---
 
@@ -39,63 +38,31 @@ It is published as **proprietary IP**: the third-party skill libraries (`agent-v
 
 ### Layer Model
 
-```
-┌──────────────────────────────────────────────────────────────────┐
-│  EXECUTION HARNESS (how agents run — runtime)                   │
-│  test daemon (7 workers) · AgentDB memory · swarm (mesh, max 5)│
-│  MCP server (memory_store, swarm_init, flow-nexus) · hooks       │
-│  .claude-flow/ · .swarm/memory.db · .mcp.json · .claude/settings│
-├──────────────────────────────────────────────────────────────────┤
-│  SLASH COMMANDS (entry points)                                   │
-│  /discover  /spec  /arch-design  /plan  /qa  /build  /review     │
-├──────────────────────────────────────────────────────────────────┤
-│  AGENT PERSONAS (who does the work)                              │
-│  ┌──────────┬───────────┬───────────┬───────────┬──────────┐     │
-│  │ Mary     │ John      │ Winston   │ Amelia    │ Sally    │     │
-│  │ Analyst  │ PM        │ Architect │ Engineer  │ UX       │     │
-│  └──────────┴───────────┴───────────┴───────────┴──────────┘     │
-├──────────────────────────────────────────────────────────────────┤
-│  SKILL DETECTION (which skills a task needs)                     │
-│  ROUTING-TABLE.yaml (16 patterns → persona + skill + cost tier)  │
-├──────────────────────────────────────────────────────────────────┤
-│  SKILL ECOSYSTEM (what they know)                                │
-│  ┌─────────────────┬─────────────────────┬──────────────────┐    │
-│  │ claude-skills   │ SDLC skills         │ awesome-copilot  │    │
-│  │ (66 domain      │ (28 process         │ (377+ tech       │    │
-│  │  experts)       │  workflows)         │  skills)         │    │
-│  ├─────────────────┼─────────────────────┼──────────────────┤    │
-│  │ software-skills │ test-skills        │ STACK REPOS      │    │
-│  │ (55 reference   │ (21 — SPARC, swarm, │ (22 technology   │    │
-│  │  guides)        │  AgentDB memory)    │  stacks)         │    │
-│  └─────────────────┴─────────────────────┴──────────────────┘    │
-├──────────────────────────────────────────────────────────────────┤
-│  METHODOLOGY (canonical kernel)                                  │
-│  kernel — 5 phases: analysis → planning → solutioning →     │
-│  implementation → review · 32 skills · core skills · v6 shims    │
-├──────────────────────────────────────────────────────────────────┤
-│  PROTOCOLS (how they behave)                                     │
-│  boundary-safety  conflict-resolution  input-validation          │
-│  loop-protocol  freshness-protocol  receipt-protocol  ... (9)    │
-├──────────────────────────────────────────────────────────────────┤
-│  OUTPUT TEMPLATES (what they produce)                            │
-│  idea-template  spec-template  deep-spec-template                │
-│  adr-template  design-doc-template  trade-off-doc-template       │
-│  review-template  architecture.drawio                            │
-└──────────────────────────────────────────────────────────────────┘
-```
+| # | Layer | Components | Responsibility |
+|---|-------|-----------|----------------|
+| 1 | **Entry** | Claude Code CLI · 16 slash commands · install/start scripts · project rules | the workspace; rules + command surface |
+| 2 | **Gateway** | lifecycle guards — secret detection at the prompt boundary · model-upgrade guard · destructive-command guard + budget · post-tool audit · session budget/start · stop hooks | every prompt, tool call, and stop event passes a guard; no silent model upgrades |
+| 3 | **Orchestrator** | dispatch of tasks to personas · complexity-based model allocation (S/M/L/XL → execution tier) · routing rules (39 patterns) + skill router (stack → skill) | decides **who** works, **with which skill**, **at what cost** |
+| 4 | **Personas** | 8 agents — Mary (analyst) · John (PM) · Winston (architect) · Amelia (engineer) · reviewer · Paige (writer) · Sally (UX) · method (orchestrator) | bounded, specialized execution |
+| 5 | **Knowledge** | 550+ skills (5 libraries) · 9 protocols · 16 templates · 6 domain packs (240+ business-AI skills) | what the kernel knows and how it behaves |
+| 6 | **Knowledge Graph (L0)** | embedded graph store — derived, idempotent ingestion · query · invariant checks (I1–I5 + baseline gate) · backup/restore (round-trip) · 15 tests | machine-checkable provenance, routing, domain/phase coverage, receipt chains |
+| 7 | **Forge Harness** | daemon (map/audit/optimize workers) · swarm (mesh ≤5) · persistent memory · MCP (diagram tooling) | cross-session memory, parallel execution, diagram tooling |
+| 8 | **Pipeline & Artifacts** | `/discover → /spec → /arch-design → /plan → /qa → /build → /review` · categorized project documents | spec-driven artifact trail, each stage gated on approval |
+| 9 | **Oracle & Loops** | validation oracle (validators + graph check) · loop ledgers (ratchet) · receipts · baseline | **GREEN = proceed, RED = stop** — every loop exits on the oracle |
 
 ### Data Flow
 
 ```
 User request
-  → Skill Detection (ROUTING-TABLE: 16 patterns → persona + skill + cost)
-  → Persona First Action (loads protocols + canonical kernel skill)
-  → Mode Dispatch (22-stack → claude-skill map)
-  → Supplementary skills by context (SDLC / copilot / test / vendor)
+  → Gateway guards (pass; context injected)
+  → Command dispatch (slash command → persona)
+  → Model allocation (complexity → tier, per cost policy)
+  → Persona first action (loads protocols + kernel skill)
+  → Skill routing (pattern rules + stack maps + domain/phase lookup via the knowledge graph)
   → Pipeline: /discover → /spec → /arch-design → /plan → /qa → /build → /review
-  → Artifacts: ideas → deep-specs → SPEC → ADRs + trade-off docs + diagrams → tasks → test cases → code + tests → review report
-  → Receipt written (protocols/receipts/)
-  → Review findings loop back into /plan (loop-protocol)
+  → Artifacts: idea briefs → deep-specs → SPEC → ADRs + trade-offs + diagrams + infra + BOM → tasks → test cases → code + tests → review report
+  → Receipt written · findings loop back via loop protocol
+  → Oracle gates every loop (GREEN/RED)
 ```
 
 ### Pipeline Flow — stages, gates, artifacts
@@ -104,17 +71,17 @@ Every stage gates on user approval before its artifact flows downstream. No arti
 
 ```mermaid
 graph LR
-    A["/discover"] --> B["one-pager · docs/ideas/{name}.md"]
+    A["/discover"] --> B["one-pager"]
     B -->|"GATE 1: approved"| C["deep-spec pass · 7 sections"]
-    C --> D["deep-spec · docs/deep-specs/{name}.md"]
+    C --> D["deep-spec"]
     D -->|"GATE 2: approved"| E["/spec"]
-    E --> F["SPEC.md · stories, ACs, roadmap M1…Mn"]
+    E --> F["SPEC · stories, ACs, roadmap M1…Mn"]
     F --> G["/arch-design"]
-    G --> H["ADRs + trade-offs + diagrams"]
+    G --> H["ADRs + trade-offs + diagrams + infrastructure + BOM"]
     H --> I["/plan"]
-    I --> J["tasks/plan.md + tasks/todo.md"]
+    I --> J["task plan + todo list"]
     J --> K["/qa"]
-    K --> L["docs/qa/test-cases.md"]
+    K --> L["test cases"]
     L --> M["/build"]
     M --> N["code + tests"]
     N --> O["/review"]
@@ -123,14 +90,223 @@ graph LR
 
 | Stage | Command | Persona | Inputs | Key activity | Gate | Outputs → consumed by |
 |-------|---------|---------|--------|--------------|------|------------------------|
-| Discovery | `/discover` | Mary (-analyst) | raw idea | idea-refine (diverge → converge → sharpen), spec-first framing | **G1:** one-pager approved | `docs/ideas/{name}.md` → deep-spec, `/spec` |
-| Deep-spec | inside `/discover` | Mary + `deep-spec` skill | approved one-pager | interactive problem-space elicitation — flows, edges, error matrix, NFRs, AC seeds, boundaries, open questions; `[ASSUMPTION]` tagging | **G2:** deep-spec approved | `docs/deep-specs/{name}.md` → `/spec` (inherits), `/arch-design` (open questions) |
-| Specification | `/spec` | John (-product-manager) | idea doc + deep-spec | TDD-style stories (each AC testable, RED test named), boundaries, **Roadmap & Timeline (M1…Mn)** | user approval | `SPEC.md` → `/arch-design`, `/plan`, `/qa` |
-| Architecture | `/arch-design` | Winston (-architect) | SPEC (direct entry OK) | ADRs, trade-off ledger (TO-N ↔ ADR), C4 + component + sequence diagrams, API contracts, boundary-safety check | user approval | `docs/adr/`, `docs/trade-offs/`, `docs/architecture/` (+ `.drawio`) → `/plan`, `/qa`, `/build` |
-| Planning | `/plan` | PM / analyst | SPEC + architecture + trade-offs | dependency graph, vertical slices, checkpoints, risk ordering | user approval | `tasks/plan.md`, `tasks/todo.md` → `/qa`, `/build` |
-| QA test cases | `/qa` | QA engineer | tasks + SPEC | per-AC test cases (Given/When/Then), coverage map, fixtures, risk-based ordering | user approval | `docs/qa/test-cases.md` → `/build` (RED tests) |
-| Build | `/build` | Amelia (-engineer) | tasks + test cases | TDD RED → GREEN → REFACTOR per task; per-task commits | tests green per task | code + tests, `tests/test-summary.md` → `/review` |
-| Review | `/review` | -review | code + artifacts | 4-lens review — Quality, Security, Architecture, Dependency | 0 Critical findings | `-REVIEW-REPORT.md`; findings loop into `/plan` (loop-protocol) |
+| Discovery | `/discover` | Mary (analyst) | raw idea | idea-refine (diverge → converge → sharpen), spec-first framing | **G1:** one-pager approved | idea brief → deep-spec, `/spec` |
+| Deep-spec | inside `/discover` | Mary + deep-spec skill | approved one-pager | interactive problem-space elicitation — flows, edges, error matrix, NFRs, AC seeds, boundaries, open questions; `[ASSUMPTION]` tagging | **G2:** deep-spec approved | deep-spec → `/spec` (inherits), `/arch-design` (open questions) |
+| Specification | `/spec` | John (product manager) | idea doc + deep-spec | TDD-style stories (each AC testable, RED test named), boundaries, **Roadmap & Timeline (M1…Mn)** | user approval | SPEC → `/arch-design`, `/plan`, `/qa` |
+| Architecture | `/arch-design` | Winston (architect) | SPEC (direct entry OK) | ADRs, trade-off ledger (TO-N ↔ ADR), C4 + component + sequence diagrams, API contracts, boundary-safety check, **infrastructure + cost design** (MVP/Production topologies, RTO/RPO, named budget ceiling, monthly run-rates), deployment diagram with **provider icons** (AWS/Azure/GCP/K8s) | user approval | ADRs · trade-offs · architecture docs (+ diagrams with provider icons) · infrastructure · costs → `/plan`, `/qa`, `/build` |
+| Planning | `/plan` | PM / analyst | SPEC + architecture + trade-offs | dependency graph, vertical slices, checkpoints, risk ordering | user approval | task plan, todo list → `/qa`, `/build` |
+| QA test cases | `/qa` | QA engineer | tasks + SPEC | per-AC test cases (Given/When/Then), coverage map, fixtures, risk-based ordering | user approval | test cases → `/build` (RED tests) |
+| Build | `/build` | Amelia (engineer) | tasks + test cases | TDD RED → GREEN → REFACTOR per task; per-task commits | tests green per task | code + tests, test summary → `/review` |
+| Review | `/review` | reviewer | code + artifacts | 4-lens review — Quality, Security, Architecture, Dependency | 0 Critical findings | review report; findings loop into `/plan` (loop protocol) |
+
+### Persona Map — who executes each stage
+
+| Persona | Name | Role | Command(s) |
+|---------|------|------|------------|
+| `nexus-method` | — | **Orchestrator** — routes work through the kernel, loads protocols, dispatches personas | all (entry point) |
+| `nexus-analyst` | Mary | Business analyst — discovery, deep-spec elicitation, market intel | `/discover` · `/market-intel` · `/plan` |
+| `nexus-product-manager` | John | Product manager — stories, ACs, roadmap | `/spec` · `/pm-strategy` · `/pm-prd` · `/pm-roadmap` · `/pm-prioritize` · `/pm-decisions` · `/pm-workshop` |
+| `nexus-architect` | Winston | Solution architect — ADRs, trade-offs, diagrams, **infrastructure + cost design** | `/arch-design` |
+| `nexus-engineer` | Amelia | Software engineer — TDD implementation (RED → GREEN → REFACTOR), per-task commits, stack-skill routing | `/build` · `/build auto` |
+| nexus-qa | QA engineer | Test cases — per-AC RED tests, coverage map | `/qa` |
+| `nexus-review` | Reviewer | Multi-lens review — quality, security, architecture, dependency + receipt | `/review` |
+| `nexus-tech-writer` | Paige | Technical writer — proposal / SDLC export | proposal command |
+| `nexus-ux-designer` | Sally | UX designer — interface planning, design systems | lateral (frontend-design, workshop companions) |
+
+**Execution rule:** tech-stack keywords (spring-boot, react, nextjs, aws, azure, gitlab, …) are detected automatically → the matching **stack skill AND expert skill** both load under the stage's persona.
+
+---
+
+## Spec-Driven Development
+
+The kernel is **spec-driven by construction**: every artifact is written **before** the code that implements it, and every artifact has a defined consumer.
+
+```
+idea → deep-spec → SPEC → ADR/trade-offs → tasks → test cases → code → review
+  ↑        ↑           ↑          ↑            ↑         ↑        ↑
+(problem)(assumptions)(stories+ACs)(decisions) (plan)    (RED tests)(gate)
+```
+
+Non-negotiables:
+
+- **A test case per acceptance criterion** — `/qa` produces the test cases; `/build` derives RED tests from them; no AC ships untested.
+- **Gates on user approval** — no artifact passes a stage without explicit approval (GATE 1: one-pager, GATE 2: deep-spec, then per-stage approval).
+- **Decisions are recorded, not remembered** — every load-bearing choice gets an ADR + a TO-N row in the trade-off document; deferred decisions carry revisit conditions.
+- **`[ASSUMPTION]` tagging** — anything unverified is tagged, tracked in the assumptions log, and validated at its gate.
+- **Direct entry allowed** — `/arch-design` from a conversation, `/qa` straight after `/plan`; the pipeline gates stay intact either way.
+
+---
+
+## Deep-Spec Methodology
+
+**Deep-spec is discovery's depth layer.** After the `/discover` one-pager is approved (gate 1), the analyst runs an interactive elicitation pass that mines **problem-space depth** from the idea owner — everything `/spec` and `/qa` would otherwise have to re-ask — into the deep-spec (gate 2). `/spec` then validates and inherits it; it never re-elicts.
+
+*Design: deep-spec discovery design doc (C4 diagrams, doc-schema contract, change set) · ADR-0001…0005 · trade-off ledger · QA test cases*
+
+### Discovery flow — two gates
+
+```mermaid
+graph TD
+    U["User"] --> D["/discover"]
+    D --> IR["idea-refine: diverge → converge → sharpen"]
+    IR --> OP["one-pager"]
+    OP -->|"GATE 1"| G1{"approved?"}
+    G1 -->|"no"| X["dead — cheap, no depth tax"]
+    G1 -->|"yes"| DS["deep-spec pass · 7 sections, interactive"]
+    DS --> SD["deep-spec"]
+    SD -->|"GATE 2"| G2{"approved?"}
+    G2 -->|"no"| DS
+    G2 -->|"yes"| SP["/spec — validates + inherits, no re-elicit"]
+```
+
+### The seven sections
+
+| # | Section | What it captures |
+|---|---------|------------------|
+| 1 | User flows & journeys | Actors, happy path, variants, entry/exit points |
+| 2 | Edge cases | Empty, max, duplicate, concurrent, missing, partial |
+| 3 | Error matrix | Failure → expected behavior, severity (tolerable / critical) |
+| 4 | Non-functional requirements | Performance, security, scale, availability — what must *hold* |
+| 5 | Acceptance-criteria seeds | Testable "done" conditions — confirmed into final ACs by `/spec` |
+| 6 | Boundaries | Always / ask-first / never |
+| 7 | Open questions | Unresolved items with owners — incl. solution-space routing to `/arch-design` |
+
+Each section is elicited with 3–5 questions and **validated by the user before the next**; every inference is tagged `[ASSUMPTION]` with a validation gate; a **fast mode** (draft-then-review) is available on explicit opt-in. **Depth boundary (ADR-0003):** the deep-spec covers problem space only — no data contracts, API contracts, tech stack, or project structure; those stay with `/arch-design`.
+
+### Strengths
+
+- **No re-elicit, no drift** — `/spec` reads the deep-spec (matching name) and inherits flows, edges, and AC seeds; the identity chain (ideas → deep-specs → SPEC) keeps every stage on the same source of truth.
+- **Edges mined while the owner is in the room** — failure modes and error paths are pulled out conversationally at discovery, not discovered at QA three stages later.
+- **Throwaway ideas stay cheap** — the depth pass runs only after gate 1 (one-pager approval), so half-formed ideas never pay the depth tax (ADR-0005).
+- **Assumptions are shown, not silently made** — `[ASSUMPTION]` tagging with validation gates carries the architecture discipline's "shown, not silently made" principle into discovery.
+- **No authority conflict** — the deep-spec is a *contributor* to the SPEC, never a co-owner; ADRs, specs, and test suites keep their sole owners.
+- **Stronger, cheaper test suites** — `/qa` maps pre-mined edges and errors directly onto test levels instead of hunting for them; the kernel's own test cases verify the whole journey, including the full E2E: fixture idea → one-pager → deep-spec → SPEC inheritance.
+
+---
+
+## Harness Loop Graph
+
+Every piece of work that needs iteration runs as a **ratcheted loop** — the rule is *no oracle, no loop*:
+
+```mermaid
+graph LR
+    T["Task / review finding"] --> L["loop protocol<br/>(contract: goal · oracle · ratchet · budget)"]
+    L --> W["Work: persona executes"]
+    W --> O["oracle<br/>validators + graph check"]
+    O -->|"RED"| F["delta: failing oracle output only"]
+    F --> W
+    O -->|"GREEN"| R["ledger: loop ledger<br/>(iterations table, ratchet never regresses)"]
+    R --> RC["receipt<br/>loops[] = closed loop history"]
+    RC --> N["next loop / next task"]
+    B["baseline"] -.-> O
+```
+
+- **Oracle** = executable exit condition (kernel-level; full for pipeline work).
+- **Ratchet** = a metric that must never regress vs. baseline (e.g. high-severity finding counts, graph invariant counts).
+- **Exit** = converged | plateau | oscillation | budget — each recorded in the ledger; escalations name a target.
+- Receipts with high findings **must** carry `loops[]`; the graph invariant I4 enforces this (receipt → loop chain).
+
+---
+
+## Daily Work Guide
+
+Daily rhythm: install once into a project; every session starts the harness (daemon + memory + swarm + MCP — idempotent, safe to run anytime) with a graph check and oracle report; run the pipeline commands during the day; run the oracle before closing any loop; stop the daemon when done.
+
+```
+/discover /spec /arch-design /plan /qa /build /review     (slash commands)
+oracle GREEN = proceed
+```
+
+---
+
+## Client Capacity Proposals (SLO → Config → BOM)
+
+A client-facing feature that converts quantified requirements into infrastructure configuration and cost — **AWS only, Azure only, AWS + Azure multi-cloud, with an optional GCP data plane**.
+
+### How to execute
+
+**Direct entry (fastest):** run `/arch-design` with a capacity prompt —
+
+```
+/arch-design produce a capacity proposal for {client/system}
+  Requirements: availability 99.9%, latency p95 < 3s, 500 concurrent users,
+  5M pages/mo OCR, RTO 1h / RPO 15min, ap-southeast-1
+  Mode: AWS + Azure multi-cloud, GCP data plane (BigQuery)
+```
+
+The architect runs the capacity elicitation → computes the capacity math (Little's-law throughput, C/L per-instance model, availability N+1 tiers) → fills the proposal template → produces the infrastructure document, the cost BOM, and the deployment diagram.
+
+**Full pipeline (formal engagements):** `/discover` (one-pager, gate 1) → deep-spec (gate 2) → `/spec` → `/arch-design` → `/review`. Each stage gates on user approval.
+
+**Skill routing is automatic:** tech keywords (`aws`, `azure`, `gcp`, `bigquery`, `cloud sql`, …) fire high-priority routing rules — the cloud-architect and the cloud cost skills all load; no manual skill selection.
+
+### What the agent produces
+
+| Deliverable | Description |
+|-------------|-------------|
+| Client proposal (requirements → math → config → BOM → verification) | capacity proposal template filled for the client |
+| Infrastructure architecture (MVP + Production, NFRs, CI/CD) | per-component infrastructure design |
+| Cost BOM (per-mode, per-cloud) | per-component cost model |
+| Deployment diagram (provider icons) | per-component deployment diagram |
+
+### Deployment modes supported
+
+| Mode | Stack | BOM |
+|------|-------|-----|
+| A — AWS only | EKS/ECS/EC2/Lambda · RDS · ElastiCache · MSK · S3 | AWS column |
+| B — Azure only | AKS · Azure SQL · Cache for Redis · Event Hubs · Functions · Blob | Azure column |
+| C — AWS + Azure | Entra ID identity + AWS workloads + Direct Connect/ExpressRoute | AWS + Azure + interconnect |
+| + GCP data plane | BigQuery/GCS lakehouse (optional, any mode) | + GCP column |
+
+Capacity is expressed in **capacity terms first** (vCPU/memory/connections/IOPS) and mapped per provider (`m6g.xlarge` ↔ `D4ds v4` ↔ `n2-standard-4`). The capacity proposal template is a workbook: inputs → formulas → config → BOM → SLI verification, with a worked example.
+
+---
+
+## Comprehensive Software Project Proposal
+
+> **Status: delivered end-to-end ✅**
+
+A client-facing deliverable assembled from **all 16 output templates** into one proposal — requirements & NFRs (SLI/SLO) → solution (C4 · component · microservices) → architecture decisions → security → infrastructure/capacity/scaling → cost BOM → delivery plan → quality → risks — exported to HTML/MD/PDF.
+
+**Live sample:** [Clinic Portal — full proposal](documents/generated/proposals/Clinic-portal-proposal.html) — the complete client proposal as one self-contained page: requirements → architecture → infrastructure → cost model → delivery plan.
+
+### How to run
+
+```
+/proposal AcmeCorp --format html --out AcmeCorp-proposal.html
+```
+
+The technical writer reads the artifact trail, assembles the 10 sections per the proposal template, and renders a self-contained HTML in a design language built for clients (cover with deployment mode + commitments, sidebar TOC, ledger tables with totals, severity badges, print stylesheet). Missing artifacts render as **"To be confirmed"** — never invented.
+
+### Section map (16 templates → 10 sections)
+
+| Proposal section | Source templates |
+|------------------|------------------|
+| Cover + Exec summary | synthesized |
+| §1 Requirements & NFRs (SLI/SLO) | idea · deep-spec · spec · success-metrics · opportunity-assessment |
+| §2 Solution Overview (C4 · component · microservices) | design-doc + C4/component diagrams |
+| §3 Architecture & Decisions (+SLO→arch) | adr · trade-off · design-doc (API) |
+| §4 Security (first-class) | design-doc security + capacity security rows |
+| §5 Infrastructure, Capacity & Scaling | infrastructure · capacity-proposal |
+| §6 Cost / BOM (per-mode, per-cloud) | bom + capacity BOM |
+| §7 Delivery Plan | spec roadmap · plan graph |
+| §8 Quality & Testing (SLI verification) | QA test cases · review |
+| §9 Risks & Assumptions | risk-register · assumptions-log · decision-log |
+| §10 Appendix | THIRD-PARTY-NOTICES · glossary · receipts |
+
+Formats: `--format html` (default, self-contained, print-ready) · `md` · `pdf`. Deployment modes: A (AWS) · B (Azure) · C (AWS+Azure) · + GCP data plane.
+
+### Coverage contract (client-required, verified at build)
+
+| Requirement | Proposal section | Status |
+|-------------|------------------|--------|
+| Component diagram | §2 Solution Overview | ✔ |
+| C4 model (context + container) | §2 Solution Overview | ✔ |
+| Microservices architecture | §2 (boundaries, communication, data ownership) | ✔ |
+| Scaling | §5 (autoscaling bounds, horizontal/vertical, peak) | ✔ |
+| **Security** | **§4 — first-class section** (zero-trust, identity, encryption, compliance) | ✔ |
+| **Infrastructure** | **§5 — first-class** (topologies, NFRs, CI/CD, modes) | ✔ |
+| NFRs (SLI/SLO) | §1 + §3 SLO→architecture mapping + §8 verification | ✔ |
 
 ---
 
@@ -138,14 +314,14 @@ graph LR
 
 | Layer | Technology | Purpose |
 |-------|-----------|---------|
-| **Platform** | Claude Code (CLI/plugin) | Host runtime — tools, filesystem, permissions |
-| **Harness** | test v3.33 (daemon, AgentDB, swarm, MCP) | Execution: memory, parallelism, orchestration |
-| **Methodology** | kernel (bmm-skills + core-skills) | Canonical SDLC workflow kernel |
-| **Skills** | claude-skills (66) · SDLC (28) · awesome-copilot (377) · software-skills (55) · test-skills (21) | Domain expertise, process workflows, references |
+| **Platform** | Claude Code (CLI) | Host runtime — tools, filesystem, permissions |
+| **Harness** | Forge (daemon, memory, swarm, MCP) | Execution: memory, parallelism, orchestration |
+| **Methodology** | Nexus SDLC workflow kernel | Canonical SDLC workflow |
+| **Skills** | 5 skill libraries — domain experts, SDLC process, dev skills, software references | Domain expertise, process workflows, references |
 | **Stacks** | 22 technology stacks (direct copies) | nestjs, spring-boot, golang, dot-net, java, python, react, nextjs, vue, nuxt, ui-ux, flutter, swift-ui, android, kotlin-compose, react-native, aws, azure, langchain, mlflow, ml-agents, context-engineering |
-| **State** | test AgentDB (`.swarm/memory.db`) | Cross-session memory |
-| **Config** | YAML (ROUTING-TABLE, SKILL-INDEX, AUTHORITY-MAP, MCP-CONFIG) | Routing, catalogs, authority, cost |
-| **Scripts** | Bash + Ruby (`agent-v01/scripts/`) | Install, start, validate, sync |
+| **State** | persistent memory database | Cross-session memory |
+| **Config** | routing + governance rules (pattern tables, catalogs, authority map, cost tiers) | Routing, catalogs, authority, cost |
+| **Scripts** | Bash + Ruby | Install, start, validate, sync |
 | **Output** | Markdown + Draw.io | SPEC, ADRs, trade-off docs, architecture diagrams, QA test cases, review reports |
 
 ### Development Languages Supported (via stacks)
@@ -164,63 +340,35 @@ graph LR
 
 ### Prerequisites
 
-- **Claude Code** v2.1.220+ (or Cursor)
+- **Claude Code** v2.1.220+
 - **Node.js** v20.12+
 - **Python** 3.10+
-- **Ruby** (macOS built-in — for YAML validation)
+- **Ruby** (macOS built-in)
 
-### Option A: Install into a new project (everything in `.claude/`)
+### Option A: Install into a new project
 
-```bash
-# 1. Clone this repo (anywhere)
-git clone <this-repo-url> nexus-agent-kernel
-
-# 2. Install — everything lands in your project's .claude/
-./nexus-agent-kernel/agent-v01/scripts/install-to-project.sh /path/to/your-project
-
-#    (symlink mode — single source of truth)
-./nexus-agent-kernel/agent-v01/scripts/install-to-project.sh --symlink /path/to/your-project
-
-# 3. Start Claude Code
-cd /path/to/your-project && claude
-```
+Everything lands in the project's configuration directory (project-level wrapper; symlink = single source of truth, or copy mode for a self-contained install). Then start Claude Code in the project and start the harness — the pipeline commands are ready.
 
 ### Option B: Load without installing (session-only)
 
-```bash
-claude --plugin-dir ./nexus-agent-kernel/agent-v01
-```
+Load the kernel directly in a session without installing into the project.
 
-### Option C: Marketplace install (requires your own repo hosting)
+### Option C: Marketplace install
 
-```bash
-claude plugin marketplace add <your-repo>
-claude plugin install nexus-agent-kernel@nexus-agent-kernel-marketplace
-```
-
-### Option D: test execution harness (optional but recommended)
-
-```bash
-# In the target project, after install
-npx test init --minimal
-./.claude/plugins/agent-v01/scripts/start-harness.sh
-
-# Intel Mac fix (onnxruntime darwin/x64): see documents/harness-knowledge.md §5.2
-```
+Install as a marketplace plugin (requires your own plugin hosting).
 
 ### What you get
 
 ```
 your-project/
-├── CLAUDE.md                  ← project rules
-└── .claude/
-    ├── commands/              ← 7 slash commands (auto-discovered)
-    ├── agents/                ← 8  personas (auto-discovered)
-    ├── skills/                ← 5 libraries, 500+ skills
-    ├── hooks/                 ← lifecycle hooks
-    ├── plugins/agent-v01/     ← full kernel (self-contained)
-    ├── helpers/               ← status line helpers
-    └── .mcp.json              ← test harness MCP
+├── CLAUDE.md           ← project rules
+├── commands/           ← 16 slash commands (auto-discovered — 8 pipeline + 8 lateral)
+├── agents/             ← 8 expert personas (auto-discovered)
+├── skills/             ← skill libraries (general + domain + stack)
+├── hooks/              ← lifecycle guards
+├── stacks/             ← 22 technology stacks
+├── protocols/          ← behavioral protocols
+└── documents/          ← project artifacts (ideas, specs, designs, costs, reports)
 ```
 
 ---
@@ -229,17 +377,86 @@ your-project/
 
 | Command | Persona | Purpose | Key SDLC Skills | Produces |
 |---------|---------|---------|-----------------|----------|
-| `/discover` 🧠 | -analyst (Mary) | **Idea → concept.** Refines raw ideas; surfaces assumptions; spec-frames output; mines problem-space depth for approved ideas. | idea-refine, spec-driven-development, deep-spec | `docs/ideas/{name}.md`, `docs/deep-specs/{name}.md` (approved ideas) |
-| `/spec` 📋 | -product-manager (John) | **Concept → contract.** TDD-style user stories — each AC testable, each story names its RED test. | spec-driven-development, test-driven-development | `SPEC.md` (objectives, stories, ACs, roadmap & timeline M1…Mn) |
-| `/arch-design` 🏛 | -architect (Winston) | **Contract → design.** ADRs, trade-off document, API contracts, data models, Draw.io. Direct entry supported (no SPEC needed). | api-and-interface-design, sparc-methodology, -architecture | `docs/adr/*.md`, `docs/trade-offs/*.md`, `docs/architecture/*.md`, `*.drawio` |
-| `/plan` 📊 | -analyst/PM | **Design → tasks.** Dependency-ordered, vertically-sliced tasks. | planning-and-task-breakdown, -create-epics-and-stories | `tasks/plan.md`, `tasks/todo.md` |
-| `/qa` 🧪 | QA engineer (-qa) | **Tasks → test cases.** Per-story unit/API/E2E test cases from acceptance criteria. | -qa-generate-e2e-tests, test-master, test-driven-development, browser-testing-with-devtools | `docs/qa/test-cases.md` (coverage map) |
-| `/build` 🛠 | -engineer (Amelia) | **Tasks → code.** TDD (RED→GREEN→REFACTOR) — RED tests derived from QA test cases. `auto` = full plan in one pass. | test-driven-development, -build, -build-auto, -qa-generate-e2e-tests | Code + tests (traceable to test cases), E2E automation summary, per-task commits |
-| `/review` 🔍 | -review | **Code → verdict.** 4-lens review (Quality, Security, Architecture, Dependency). | security-and-hardening, -review, -code-review | `-REVIEW-REPORT.md` |
+| `/discover` 🧠 | Mary (analyst) | **Idea → concept.** Refines raw ideas; surfaces assumptions; spec-frames output; mines problem-space depth for approved ideas. | idea-refine, spec-driven-development, deep-spec | idea brief + deep-spec (approved ideas) |
+| `/spec` 📋 | John (product manager) | **Concept → contract.** TDD-style user stories — each AC testable, each story names its RED test. | spec-driven-development, test-driven-development | SPEC (objectives, stories, ACs, roadmap & timeline M1…Mn) |
+| `/arch-design` 🏛 | Winston (architect) | **Contract → design.** ADRs, trade-off document, API contracts, data models, diagrams, **infrastructure + cost** (budget ceiling, run-rates), deployment diagram with **provider icons**. Direct entry supported. | api-and-interface-design, nexus-architecture, cloud-architect, cost-optimization, diagram generator | ADRs · trade-offs · architecture docs · diagrams (provider icons) · infrastructure · costs |
+| proposal 📤 | Paige (tech writer) | **Artifacts → one-page proposal.** Renders the full trail (discovery → deployment) into a single self-contained HTML — sidebar TOC, status badges, ledger tables, print-ready. | code-documenter, diagram generator (design language) | one-page proposal HTML |
+| `/plan` 📊 | Mary / John | **Design → tasks.** Dependency-ordered, vertically-sliced tasks. | planning-and-task-breakdown, epics-and-stories | task plan + todo list |
+| `/qa` 🧪 | QA engineer | **Tasks → test cases.** Per-story unit/API/E2E test cases from acceptance criteria. | e2e-test generation, test-master, test-driven-development, browser testing | test cases (coverage map) |
+| `/build` 🛠 | Amelia (engineer) | **Tasks → code.** TDD (RED→GREEN→REFACTOR) — RED tests derived from QA test cases. `auto` = full plan in one pass. | test-driven-development, build skills, e2e-test generation | Code + tests (traceable to test cases), E2E automation summary, per-task commits |
+| `/review` 🔍 | reviewer | **Code → verdict.** 4-lens review (Quality, Security, Architecture, Dependency). | security-and-hardening, review skills | review report |
+
+### Lateral Product-Workflow Commands (supporters — the pipeline remains the kernel)
+
+On-demand product workflows. They run under a persona, produce their own artifacts, and **feed** the pipeline (`/pm-prd` → `/spec`, `/market-intel` → `/discover`, `/pm-roadmap` ← consumes the SPEC) without becoming pipeline stages or gates. **The pipeline never requires them** — they are accelerators for when the artifact type matters.
+
+| Command | Persona | Purpose | Produces |
+|---------|---------|---------|----------|
+| `/pm-strategy` 🎯 | John (product manager) | Positioning → opportunity → roadmap direction | strategy brief → `/pm-prd`, `/spec` |
+| `/pm-prd` 📄 | John (product manager) | Full PRD with Gherkin ACs — feeds `/spec` | PRD → `/spec` |
+| `/pm-roadmap` 🗺 | John (product manager) | Strategic roadmap + epic breakdown — consumes the SPEC | roadmap → `/plan` |
+| `/pm-prioritize` ⚖️ | John (product manager) | Evidence-based backlog ranking | ranked decision → `/spec` |
+| `/market-intel` 🕵️ | Mary (analyst) | Cited market/competitive intel pack | intel pack → `/discover`, `/arch-design` |
+| `/pm-decisions` 💰 | John (product manager) | SaaS health/growth/pricing verdicts | decisions brief |
+| `/pm-workshop` 🛠 | Sally (UX) + Mary | Facilitated discovery workshops | workshop artifacts → `/discover` |
+
+**`/pm-strategy` — "Where are we going?"** builds the strategic frame — positioning, the locked problem, opportunity options, and sequenced roadmap direction — before any product decisions are made. *Use when:* starting a new product line; the team disagrees on direction; a quarterly strategy review. It becomes context for `/pm-prd` and `/spec` — it is *not* a gate.
+
+**`/pm-prd` — "The product contract"** produces a full 10-section PRD — executive summary, problem, personas, strategic context, solution, success metrics, user stories with Gherkin ACs, out-of-scope, dependencies/risks, open questions — with assumptions 🔶 and open questions 🔵 tagged, never silently filled. The PRD feeds `/spec`, which **validates and inherits** it (no re-elicit).
+
+**`/pm-roadmap` — "What ships when, and why that order"** builds the strategic roadmap — priorities, epic definitions, stakeholder alignment, dependency-sequenced milestones — grounded in the customer journey. It consumes the SPEC (never re-asks what `/spec` already answered) and feeds `/plan`.
+
+**`/pm-prioritize` — "What's in the MVP, what waits"** ranks the backlog with evidence — deliberately selecting the prioritization framework (RICE / ICE / Kano / alternative) by stage and team context, scoring every candidate, and recording rejected items with reasons. Often run *during* `/spec` when scope is contested.
+
+**`/market-intel` — "What's the evidence on the market and competitors?"** produces cited market/competitive intelligence — landscape scan, competitive snapshot, ongoing watch, and field-ready battle cards where every claim carries a source URL, date, and Fact/Inference/Assumption label. Run once for a snapshot, or set up the watch for ongoing deltas.
+
+**`/pm-decisions` — "The numbers say what?"** delivers SaaS health, growth, and pricing verdicts from quantified metrics — every conclusion traces to a listed metric or is labeled an assumption; missing metrics are listed, never invented.
+
+**`/pm-workshop` — "Let's think together, structured"** runs facilitated discovery workshops — journey mapping, story mapping, lean UX canvas, JTBD — one question per turn with tracked progress, producing structured artifacts plus the decisions and assumptions made during the session.
+
+#### Incorporating lateral commands into the pipeline
+
+The pipeline gates (G1 one-pager, G2 deep-spec) never move; lateral commands slot *beside* stages as optional accelerators:
+
+```mermaid
+graph TB
+    subgraph lateral-before["Before discovery"]
+        S1["/pm-strategy · strategic frame"]
+        S2["/pm-workshop · user evidence"]
+        S3["/market-intel · market evidence"]
+    end
+    S1 -.-> D
+    S2 -.-> D
+    S3 -.-> D
+    D["/discover"] --> OP["one-pager"]
+    OP -->|GATE 1| DS["deep-spec pass"]
+    DS -->|GATE 2| SP["/spec"]
+    P1["/pm-prd · PRD (if required)"] -.-> SP
+    P2["/pm-prioritize · MVP cut"] -.-> SP
+    SP --> AD["/arch-design"]
+    I1["/market-intel · competitive constraints"] -.-> AD
+    AD --> PL["/plan"]
+    R1["/pm-roadmap · roadmap (consumes SPEC)"] -.-> PL
+    PL --> QA["/qa"] --> B["/build"] --> RV["/review"]
+```
+
+| Where in the flow | Lateral command | What it adds |
+|-------------------|-----------------|--------------|
+| Before `/discover` | `/pm-strategy` · `/pm-workshop` · `/market-intel` | Strategic frame, user evidence, market evidence → better one-pager, fewer discovery round-trips |
+| Before `/spec` | `/pm-prd` · `/pm-prioritize` | PRD contract to validate-and-inherit; evidence-based MVP cut |
+| Between `/spec` and `/arch-design` | `/market-intel` | Competitive constraints for architecture decisions |
+| After `/spec`, before `/plan` | `/pm-roadmap` | Epic-level roadmap the plan slices from |
+| Anywhere (ad hoc) | `/pm-decisions` | SaaS health/growth/pricing verdicts feeding prioritization |
+
+**The rules of incorporation:**
+1. **Optional, never required** — the pipeline runs end-to-end without any lateral command; they exist to produce artifact types the pipeline doesn't.
+2. **Feed, never gate** — lateral artifacts feed stages (validate-and-inherit) or inform decisions; they never become gates or stages themselves.
+3. **No re-elicit** — when a lateral command consumes pipeline output (e.g., `/pm-roadmap` reading the SPEC), it validates and inherits rather than re-asking.
+4. **Artifacts pass by name** — strategy, PRD, intel, roadmap, decisions, workshops; no in-memory handoffs.
 
 ### Quick Start
 
-```bash
+```
 /discover "Build a multi-tenant appointment scheduler"   # 1. Idea + deep-spec (risk, assumptions, flows, edges, NFRs)
 /spec                                                    # 2. Contract
 /arch-design                                             # 3. Design (ADRs + trade-off doc)
@@ -249,241 +466,157 @@ your-project/
 /review                                                  # 7. Verdict
 ```
 
----
-
-## 5. Deep-Spec Methodology
-
-**Deep-spec is discovery's depth layer.** After the `/discover` one-pager is approved (gate 1), the -analyst runs an interactive elicitation pass that mines **problem-space depth** from the idea owner — everything `/spec` and `/qa` would otherwise have to re-ask — into `docs/deep-specs/{name}.md` (gate 2). `/spec` then validates and inherits it; it never re-elicts.
-
-*Design:* `docs/architecture/deep-spec-discovery.md` · ADR-0001…0005 · `docs/trade-offs/deep-spec-discovery-trade-offs.md` · `docs/qa/test-cases.md`
-
-### Discovery flow — two gates
-
-```mermaid
-graph TD
-    U["User"] --> D["/discover"]
-    D --> IR["idea-refine: diverge → converge → sharpen"]
-    IR --> OP["one-pager · docs/ideas/{name}.md"]
-    OP -->|"GATE 1"| G1{"approved?"}
-    G1 -->|"no"| X["dead — cheap, no depth tax"]
-    G1 -->|"yes"| DS["deep-spec pass · 7 sections, interactive"]
-    DS --> SD["deep-spec · docs/deep-specs/{name}.md"]
-    SD -->|"GATE 2"| G2{"approved?"}
-    G2 -->|"no"| DS
-    G2 -->|"yes"| SP["/spec — validates + inherits, no re-elicit"]
-```
-
-### The seven sections
-
-| # | Section | What it captures |
-|---|---------|------------------|
-| 1 | User flows & journeys | Actors, happy path, variants, entry/exit points |
-| 2 | Edge cases | Empty, max, duplicate, concurrent, missing, partial |
-| 3 | Error matrix | Failure → expected behavior, severity (tolerable / critical) |
-| 4 | Non-functional requirements | Performance, security, scale, availability — what must *hold* |
-| 5 | Acceptance-criteria seeds | Testable "done" conditions — confirmed into final ACs by `/spec` |
-| 6 | Boundaries | Always / ask-first / never (per spec-driven-development) |
-| 7 | Open questions | Unresolved items with owners — incl. solution-space routing to `/arch-design` |
-
-Each section is elicited with 3–5 questions and **validated by the user before the next**; every inference is tagged `[ASSUMPTION]` with a validation gate; a **fast mode** (draft-then-review) is available on explicit opt-in. **Depth boundary (ADR-0003):** the deep-spec covers problem space only — no data contracts, API contracts, tech stack, or project structure; those stay with `/arch-design`.
-
-### Strengths
-
-- **No re-elicit, no drift** — `/spec` reads `docs/deep-specs/{name}.md` (matching slug) and inherits flows, edges, and AC seeds; the `{name}` identity chain (`ideas → deep-specs → SPEC`) keeps every stage on the same source of truth.
-- **Edges mined while the owner is in the room** — failure modes and error paths are pulled out conversationally at discovery, not discovered at QA three stages later.
-- **Throwaway ideas stay cheap** — the depth pass runs only after gate 1 (one-pager approval), so half-formed ideas never pay the depth tax (ADR-0005).
-- **Assumptions are shown, not silently made** — `[ASSUMPTION]` tagging with validation gates carries -architecture's "shown, not silently made" discipline into discovery.
-- **No authority conflict** — the deep-spec is a *contributor* to SPEC.md, never a co-owner; ADRs, specs, and test suites keep their sole owners (conflict-resolution protocol).
-- **Stronger, cheaper test suites** — `/qa` maps pre-mined edges and errors directly onto test levels instead of hunting for them; 12 kernel test cases (`docs/qa/test-cases.md`) verify the whole journey, including the full E2E: fixture idea → one-pager → deep-spec → SPEC.md inheritance.
-
----
-
-## 6. Skill Detection — Yes, the agent detects needed skills per task
-
-### Progressive Skill Routing (Tier 0-3) — lazy loading to avoid huge reads
-
-The kernel has ~1,800 skills. Instead of embedding all skill tables in agent files (engineer was 179 lines / 157 refs), routing is **progressive disclosure**:
-
-| Tier | What | When | Size |
-|------|------|------|------|
-| **0** | `ROUTING-TABLE.yaml` — task → persona + cost | task start | ~1KB |
-| **1** | Agent stub — persona + workflow (no skill tables) | persona adopted | ~300 words |
-| **2** | `SKILL-ROUTER.yaml` — persona → phase → skills | **only when skill needed** | ~294 words |
-| **3** | `skills/profiles/{persona}.yaml` + specific SKILL.md | on-demand | ~10 lines/skill |
-
-**Result:** "fix a typo" loads 300 words instead of 1,005 (**-70%**). "build flutter screen" loads 428 instead of 1,005 (**-57%**). Generate profiles: `ruby agent-v01/scripts/generate-skill-profiles.rb`.
-
-### Level 1: ROUTING-TABLE (16 pattern rules → persona + skill)
-
-| Phase | Example pattern | Dispatches to |
-|-------|----------------|---------------|
-| Analysis | `explore codebase\|analyze\|research` | -analyst |
-| Planning | `requirements\|user story\|spec\|epic` | -product-manager |
-| Solutioning | `architecture\|system design\|adr` | -architect |
-| Implementation | `implement\|build\|develop\|add feature` | -engineer |
-| Review | `review\|code review\|audit\|test` | -review |
-| Documentation | `document\|docs\|readme` | -tech-writer |
-
-### Level 2: Tech-specific routing (priority: critical — fires before generic)
-
-| Task keyword | Routes to |
-|--------------|-----------|
-| `flutter`/`dart` | `stacks/mobile/flutter/` (22 skills) + flutter-expert |
-| `graphql`/`apollo` | `supplements/graphql/` (14 Apollo skills) + graphql-architect |
-| `terraform`/`iac` | `stacks/cloud/terraform/` (13 HashiCorp skills) |
-| `aws` | `stacks/cloud/aws/` + cloud-architect + agentic-awesome/cloud |
-| `azure` | `stacks/cloud/azure/` (27 MS skills) + per-language azure-sdk |
-| `react` | `stacks/frontend/react/` + react-expert |
-| `python` | `stacks/backend/python/` (incl. 39 azure-sdk-python) + python-pro |
-| `java` | `stacks/backend/java/` (incl. 26 azure-sdk-java) + java-architect |
-| `dotnet`/`.net` | `stacks/backend/dot-net/` (incl. 28 azure-sdk-dotnet) + csharp-developer |
-| `typescript` | `stacks/frontend/typescript-azure-sdk/` (24 skills) + typescript-pro |
-| `stripe`, `supabase`, `auth0` | vendor skill from `supplements/database-design/` |
-| `swarm`, `memory`, `parallel` | test skill (swarm-orchestration, agentdb) |
-
-### Level 3: Categorized skill libraries (unique skills by task)
-
-| Library | Skills | Organization |
-|---------|--------|--------------|
-| `core-skills/awesome-copilot/_categorized/` | 353 dev skills | 19 categories (backend, frontend, cloud, database, security, testing, ...) |
-| `core-skills/agentic-awesome/` | 1,198 skills | 16 categories (backend, frontend, mobile, cloud, database, ai-ml, security, ...) |
-| `core-skills/claude-skills/` | 66 experts | 22-stack map |
-| `core-skills/test-skills/` | 21 skills | swarm, memory, SPARC |
-| `supplements/database-design/` | 2 skills | supabase-postgres-best-practices, supabase |
-| `supplements/graphql/` | 14 Apollo skills | client, server, federation, router, schema, operations |
-| `stacks/cloud/terraform/` | 13 HashiCorp skills | code-gen, module-gen, policy, provider-dev |
-| `stacks/*/azure-sdk/` | 117 MS skills | python (39), java (26), dot-net (28), typescript (24) |
-
-### Example trace
+**Example combined flow (pipeline + lateral commands):**
 
 ```
-"Build a Flutter payment screen with Stripe"
-  → ROUTING-TABLE: "implement|build|develop" → -engineer
-  → Stack: "flutter" → flutter-expert claude-skill
-  → Vendor: "stripe" → stripe skill from CATALOG.md
-  → Loads: engineer persona + flutter-expert + stripe vendor skill
+/market-intel "multi-tenant scheduling SaaS"   # evidence before discovery (opportunity case)
+/pm-workshop "scheduler onboarding journey"    # user evidence
+/discover "Build a multi-tenant appointment scheduler"
+/pm-strategy "appointment scheduler line"      # strategic frame (optional)
+/pm-prioritize "availability sync, smart routing, billing, analytics"   # MVP cut
+/spec                                          # inherits one-pager + deep-spec + PRD/ranking context
+/pm-roadmap                                    # roadmap from SPEC → /plan slices
+/arch-design
+/plan
+/qa
+/build auto
+/review
 ```
 
 ---
 
-## 7. test Harness — Start & Use
+## Skill Detection — Yes, the agent detects needed skills per task
 
-### Start (one command)
+When a task arrives, the orchestrator reads its keywords — action, domain, tech stack — and loads **only the skills that task needs**. No manual skill selection, ever.
 
-```bash
-./agent-v01/scripts/start-harness.sh           # daemon + memory + swarm + MCP + validate
-./agent-v01/scripts/start-harness.sh --status  # check only
-./agent-v01/scripts/start-harness.sh --stop    # stop all
+- *"Fix a typo"* → loads just the review skill context (~300 words, not thousands)
+- *"Build a Flutter screen"* → routes to the engineer persona + Flutter stack skills
+- *"Architecture for an AWS system"* → routes to the architect persona + cloud and cost skills
+
+Detection is **progressive**: the orchestrator first routes the task to the right persona, then loads the skills for the task's stack and domain on demand. Tech-stack keywords (flutter, react, aws, azure, python, …) fire high-priority rules and load both the stack skill and its expert counterpart.
+
+**Example trace:** *"Build a Flutter payment screen with Stripe"* → engineer persona → Flutter stack skills → Stripe payment skill. One task, three targeted loads — nothing more.
+
+---
+
+## Forge Harness — Start & Use
+
+### Start & Use
+
+First push of the project repository:
+
+```
+git push --set-upstream origin main
 ```
 
 ### Cross-session memory (the "I can't remember" fix)
 
-```bash
-test memory store -k <key> -v "<value>"   # save
-test memory get -k <key>                   # recall (any session)
-./agent-v01/scripts/test-harness-memory.sh  # verify persistence
 ```
-
-### Manual steps
-
-```bash
-test daemon start    # 7 background workers
-test memory init     # memory database
-test swarm init      # mesh topology, max 5 agents
-test mcp status      # MCP server
+memory store -k <key> -v "<value>"   # save a fact
+memory get -k <key>                   # recall it in any session
 ```
-
-> **Intel Mac note:** env vars in `~/.zshrc`:
-> ```bash
-> export CLAUDE_FLOW_MEMORY_BACKEND=better-sqlite3
-> export CLAUDE_FLOW_DAEMON=0
-> ```
-> Details in `documents/harness-knowledge.md` §5.2.
 
 ---
 
-## 8. Cost Management
+## Cost Management
 
 | Layer | Mechanism | Prevents |
 |-------|-----------|----------|
-| **Skill routing** | Load only persona-relevant skills; stacks per-mode | Wasted context (~80-99% savings) |
-| **MCP gating** (`MCP-CONFIG.yaml`) | 4 cost tiers with daily budgets; concurrency cap 3/agent + 10 total; soft budget (warn 80%, block 100%) | Unbounded paid API calls |
-| **Model routing** | default sonnet-5, routing haiku-4.5; S1-S2 cheap / S4-S5 expensive | Premium models on trivial tasks |
+| **Skill routing** | Load only task-relevant skills; stacks per mode | Wasted context (~80–99% savings) |
+| **MCP gating** | 4 cost tiers with daily budgets; concurrency cap per agent + total; soft budget (warn 80%, block 100%) | Unbounded paid API calls |
+| **Model routing** | default workhorse model, cheap tier for simple tasks; premium tiers gated on complexity | Premium models on trivial tasks |
 | **Hooks + receipts** | Pre-tool guard, post-tool audit, receipt protocol | Rework from incomplete work |
 
 ---
 
-## 9. Project Structure
+## Project Structure
 
 ```
 nexus-agent-kernel/
-├── .claude-flow/              # runtime (config, data, logs, sessions)
-├── .swarm/memory.db           # memory database
+├── .swarm/memory.db           # persistent memory database
 ├── .mcp.json                  # MCP server config
-├── CLAUDE.md                  # Project rules
-├── documents/                 # Architecture docs (harness-knowledge.md, etc.)
-├── docs/                      # Pipeline artifacts (per stage, gated)
-│   ├── ideas/                 # one-pagers — from /discover (G1)
-│   ├── deep-specs/            # problem-space depth — from deep-spec pass (G2)
-│   ├── adr/                   # architecture decisions — from /arch-design
-│   ├── trade-offs/            # decision ledger (TO-N ↔ ADR)
-│   ├── architecture/          # design docs + .drawio diagrams
-│   └── qa/                    # test cases + coverage map — from /qa
-├── tasks/                     # plan.md + todo.md — from /plan
-├── agent-v01/
-    ├── agents/                # 8 personas
-    ├── protocols/             # 9 protocols (synced)
-    ├── scripts/               # ALL scripts (install, start, validate, sync)
-    ├── .claude/commands/      # 7 slash commands (source)
-    ├── .claude-plugin/        # plugin.json + marketplace.json
-    ├── stacks/                # 22 technology stacks
-    ├── supplements/           # 10 collections (incl. database-design)
-    ├── references/            # templates + skill catalogs
-    ├── methodologies/         # kernel, test/SPARC, general-sdlc, -builder
-    ├── core-skills/
-    │   ├── claude-skills/     # 66 domain experts
-    │   ├── awesome-copilot/   # 353 dev skills in 19 categories (_categorized/)
-    │   ├── agentic-awesome/   # 1,198 skills in 16 categories
-    │   ├── claude-software-skills/  # 55 reference guides
-    │   ├── test-skills/      # 21 swarm/memory/SPARC skills
-    │   └── ...                # stack repos, vendor skills
-    ├── hooks/                 # lifecycle hooks
-    ├── mcp/                   # MCP server configs
-    ├── kernel/           # canonical kernel (5 phases, 32 skills)
-    ├── SKILL-INDEX.yaml       # master catalog
-    ├── SKILL-ROUTER.yaml     # Tier 2: lazy skill routing index
-    ├── skills/profiles/      # Tier 3: per-agent skill profiles (generated)
-    ├── ROUTING-TABLE.yaml     # skill detection
-    ├── AUTHORITY-MAP.yaml     # canonical source priorities
-    ├── MCP-CONFIG.yaml        # cost gating
-    └── MCP-AGENT-MAP.yaml     # persona → MCP mapping
+├── CLAUDE.md                  # project rules
+├── documents/
+│   ├── project/               # curated — guides, architecture (drawio + PNG)
+│   └── generated/             # agent pipeline artifacts (ideas, adr, tasks, reports, …)
+├── scripts/                   # project-level start + install scripts
+├── kernel/
+│   ├── agents/                # 8 expert personas
+│   ├── protocols/             # 9 behavioral protocols (synced)
+│   ├── scripts/               # all scripts (install, start, validate, sync)
+│   ├── .claude/commands/      # 16 slash commands (source)
+│   ├── .claude-plugin/        # plugin.json + marketplace.json
+│   ├── stacks/                # 22 technology stacks
+│   ├── supplements/           # 10 collections (incl. database-design)
+│   ├── references/            # templates + skill catalogs
+│   ├── methodologies/         # nexus-method, SPARC, general-sdlc, nexus-builder
+│   ├── core-skills/
+│   │   ├── some-skills/     # 66 domain experts
+│   │   └── ...                # stack repos, vendor skills
+│   ├── hooks/                 # lifecycle hooks
+│   ├── mcp/                   # MCP server configs
+│   ├── nexus/                 # live kernel branch the kernel loads
+│   │                          # (frozen upstream package kept read-only beside it)
+│   └── skills/profiles/       # per-agent skill profiles (generated)
 ```
 
 ---
 
-## 10. Protocol Sync
+## Capability Skills
 
-```bash
-./agent-v01/scripts/sync-protocols.sh --check   # verify sync
-./agent-v01/scripts/sync-protocols.sh --apply   # sync diverged files
-```
+The harness carries a library of engineering capabilities it applies on your project — each one a bounded body of expertise with its own deliverables, standards, and test approach:
 
----
-
-## 11. Validation
-
-| Validator | Checks | Run |
-|-----------|--------|-----|
-| `validate-structure.sh` | agents, stacks, supplements, references, methodologies, commands, protocols, plugin | `bash agent-v01/scripts/validate-structure.sh` |
-| `validate-harness.sh` | daemon, config, memory.db, MCP, skills, git hygiene | `bash agent-v01/scripts/validate-harness.sh` |
-| `validate-hooks.sh` | hooks.json, referenced scripts, syntax | `bash agent-v01/scripts/validate-hooks.sh` |
-| `validate-skills-frontmatter.sh` | agents + skills frontmatter, no symlinks | `bash agent-v01/scripts/validate-skills-frontmatter.sh` |
-| `validate-yaml.rb` | all YAML syntax | `ruby agent-v01/scripts/validate-yaml.rb` |
+| Capability | What it brings |
+|------------|----------------|
+| [AI-Native Product Engineering](skills/ai-native-product-engineering/SKILL.md) | Designing and shipping LLM-powered products: prompt architecture, evaluation, cost & latency engineering, guardrails |
+| [Fraud & Risk Systems](skills/fraud-risk-systems/SKILL.md) | Detection pipelines, risk scoring, compliance controls for high-stakes transactions |
+| [E-commerce & Personalization](skills/ecommerce-personalization/SKILL.md) | Search, recommendations, catalog, checkout — engineered for conversion and scale |
+| [Fintech & Payments](skills/fintech-payments/SKILL.md) | Payment orchestration, ledgering, reconciliation, financial security — where correctness is non-negotiable |
+| [Data Platforms & Analytics](skills/data-platforms-analytics/SKILL.md) | Warehousing, pipelines, and analytics from raw sources to decision-ready data |
+| [Mobile & Cross-Platform Development](skills/mobile-cross-platform/SKILL.md) | Native-quality iOS + Android from a single codebase, including release engineering |
+| [Cloud Architecture & Migration](skills/cloud-architecture-migration/SKILL.md) | Moving and modernizing workloads on the cloud without the cost horror stories |
+| [Security Hardening](skills/security-hardening/SKILL.md) | Defense in depth for applications, infrastructure, and the delivery process itself |
 
 ---
 
-## 12. Further Reading
+## Showcase Deliverables
 
-| Document | Description |
-|----------|-------------|
-| `documents/harness-knowledge.md` | Full harness architecture + how to use + memory fix |
+Real artifacts from real engagements, kept as portfolio samples:
+
+| Deliverable | What it shows |
+|-------------|---------------|
+| [Clinic Portal — 1-page proposal](documents/generated/proposals/Clinic-portal-proposal.html) | The complete client proposal as **one page**: requirements → architecture → infrastructure → cost model → delivery plan, self-contained and print-ready |
+| [Zero-Trust Architecture](documents/generated/architecture/architect.drawio) | Zero-trust architecture for AWS/LLMOps: identity-driven access (Entra ID SSO · SAML · JWT/JWKS validation), encrypted private interconnect, segmented services (EKS OCR · RAG · Agent · Eval), external SaaS integrations (open in draw.io) |
+
+### Smaller sample projects — the pipeline at mini-scale
+
+Illustrative samples for demonstration, not client deliverables — the same stages, the same discipline, readable in minutes:
+
+| Project | What it shows |
+|---------|---------------|
+| [Restaurant Loyalty App](demo-projects/restaurant-loyalty-app/README.md) | A small engagement run end to end — a double-tap on the points ledger surfaces as a critical test case |
+| [Insurance Claims Assistant](demo-projects/insurance-claims-assistant/README.md) | An AI product where the hard engineering is the guardrails: human-in-the-loop requirements and adversarial tests |
+| [E-commerce Search & Personalization](demo-projects/ecommerce-search-personalization/README.md) | Architecture-stage work catching a real cost problem (full re-index vs incremental) before any code exists |
+
+### Rapid app showcases — 10-minute production builds
+
+Proof of speed: two production-grade applications, each generated end to end in under 10 minutes. Screenshots show the apps running — no mockups.
+
+| App | Stack | What it is | Screenshot |
+|-----|-------|------------|------------|
+| [SaaS Dashboard](demo-projects/nextjs-saas-dashboard/README.md) | Next.js | Production-grade admin dashboard: auth, data tables, charts, responsive layout | [view](demo-projects/nextjs-saas-dashboard/preview.png) |
+| [Booking App](demo-projects/flutter-booking-app/README.md) | Flutter | Cross-platform booking & reservation app — one codebase, iOS + Android | [view](demo-projects/flutter-booking-app/preview.png) |
+
+---
+
+## Contact
+
+**Want to see how this works on your project? Contact me directly — happy to walk you through a live demo or schedule a kickoff workshop.**
+
+- 📧 **Email:** `your@email.com`
+- 📞 **Phone / WhatsApp:** `+84 000 000 000`
+- 🔗 **LinkedIn:** `https://linkedin.com/in/your-profile`
+
+---
+
+*© 2026 — All rights reserved. This showcase repository contains sample deliverables and methodology descriptions only; the underlying technology is proprietary.*
