@@ -617,9 +617,8 @@ Proof of speed: two production-grade applications, each generated end to end in 
 
 **Want to see how this works on your project? Contact me directly — happy to walk you through a live demo or schedule a kickoff workshop.**
 
-- 📧 **Email:** `your@email.com`
-- 📞 **Phone / WhatsApp:** `+84 000 000 000`
-- 🔗 **LinkedIn:** `https://linkedin.com/in/your-profile`
+- 📧 **Email:** `duongphamthaibinh@gmail.com`
+- 📞 **Phone / WhatsApp:** `+84 968009244`
 
 ---
 
