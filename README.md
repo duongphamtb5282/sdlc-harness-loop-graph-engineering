@@ -533,39 +533,6 @@ memory get -k <key>                   # recall it in any session
 
 ---
 
-## Project Structure
-
-```
-nexus-agent-kernel/
-├── .swarm/memory.db           # persistent memory database
-├── .mcp.json                  # MCP server config
-├── CLAUDE.md                  # project rules
-├── documents/
-│   ├── project/               # curated — guides, architecture (drawio + PNG)
-│   └── generated/             # agent pipeline artifacts (ideas, adr, tasks, reports, …)
-├── scripts/                   # project-level start + install scripts
-├── kernel/
-│   ├── agents/                # 8 expert personas
-│   ├── protocols/             # 9 behavioral protocols (synced)
-│   ├── scripts/               # all scripts (install, start, validate, sync)
-│   ├── .claude/commands/      # 16 slash commands (source)
-│   ├── .claude-plugin/        # plugin.json + marketplace.json
-│   ├── stacks/                # 22 technology stacks
-│   ├── supplements/           # 10 collections (incl. database-design)
-│   ├── references/            # templates + skill catalogs
-│   ├── methodologies/         # nexus-method, SPARC, general-sdlc, nexus-builder
-│   ├── core-skills/
-│   │   ├── some-skills/     # 66 domain experts
-│   │   └── ...                # stack repos, vendor skills
-│   ├── hooks/                 # lifecycle hooks
-│   ├── mcp/                   # MCP server configs
-│   ├── nexus/                 # live kernel branch the kernel loads
-│   │                          # (frozen upstream package kept read-only beside it)
-│   └── skills/profiles/       # per-agent skill profiles (generated)
-```
-
----
-
 ## Capability Skills
 
 The harness carries a library of engineering capabilities it applies on your project — each one a bounded body of expertise with its own deliverables, standards, and test approach:
